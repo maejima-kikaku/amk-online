@@ -342,7 +342,8 @@ a:focus-visible {
   background: var(--wine);
 }
 
-.delivery-note {
+.delivery-note,
+.market-note {
   display: grid;
   gap: 6px;
   margin-top: 22px;
@@ -351,7 +352,12 @@ a:focus-visible {
   background: #f4f0e8;
 }
 
-.delivery-note span {
+.market-note {
+  background: #eef4f6;
+}
+
+.delivery-note span,
+.market-note span {
   color: var(--muted);
   font-size: 13px;
   line-height: 1.6;
@@ -489,6 +495,41 @@ a:focus-visible {
   color: var(--muted);
   font-size: 13px;
   line-height: 1.65;
+}
+
+.market-panel {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #faf8f4;
+}
+
+.market-panel div {
+  min-width: 0;
+}
+
+.market-panel span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.market-panel strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.style-note {
+  padding-left: 10px;
+  border-left: 3px solid var(--gold);
 }
 
 .product-source {
@@ -936,5 +977,9 @@ a:focus-visible {
 
   .segmented {
     grid-template-columns: 1fr;
+  }
+
+  .market-panel {
+    grid-template-columns: 1fr 1fr;
   }
 }
