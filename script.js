@@ -6,6 +6,13 @@ const products = [
     region: "アメリカ / ナパ・ヴァレー",
     grape: "ボルドーブレンド",
     price: 98000,
+    marketPrice: 112000,
+    lowPrice: 92000,
+    offers: 18,
+    criticScore: 99,
+    vintage: "2019",
+    size: "750ml",
+    style: "Red - Bold and Structured",
     rating: 4.9,
     badge: "Napa",
     color: "#5b1826",
@@ -20,6 +27,13 @@ const products = [
     region: "フランス / ボルドー・マルゴー",
     grape: "カベルネ・ソーヴィニヨン主体",
     price: 260000,
+    marketPrice: 282000,
+    lowPrice: 248000,
+    offers: 9,
+    criticScore: 100,
+    vintage: "2015",
+    size: "750ml",
+    style: "Red - Savory and Classic",
     rating: 5.0,
     badge: "1級",
     color: "#4d1720",
@@ -34,6 +48,13 @@ const products = [
     region: "イタリア / トスカーナ・ボルゲリ",
     grape: "ボルドーブレンド",
     price: 52000,
+    marketPrice: 56000,
+    lowPrice: 49800,
+    offers: 22,
+    criticScore: 97,
+    vintage: "2020",
+    size: "750ml",
+    style: "Red - Bold and Structured",
     rating: 4.8,
     badge: "Super Tuscan",
     color: "#6b1f2b",
@@ -48,6 +69,13 @@ const products = [
     region: "イタリア / ピエモンテ・バルバレスコ",
     grape: "ネッビオーロ",
     price: 68000,
+    marketPrice: 74000,
+    lowPrice: 64000,
+    offers: 14,
+    criticScore: 96,
+    vintage: "2020",
+    size: "750ml",
+    style: "Red - Savory and Classic",
     rating: 4.9,
     badge: "Piedmont",
     color: "#7a2330",
@@ -62,6 +90,13 @@ const products = [
     region: "フランス / シャンパーニュ",
     grape: "ピノ・ノワール / シャルドネ / ムニエ",
     price: 43000,
+    marketPrice: 47000,
+    lowPrice: 39800,
+    offers: 28,
+    criticScore: 96,
+    vintage: "NV",
+    size: "750ml",
+    style: "Sparkling - Complex and Traditional",
     rating: 4.9,
     badge: "泡",
     color: "#b98b2f",
@@ -76,6 +111,13 @@ const products = [
     region: "フランス / シャンパーニュ",
     grape: "ピノ・ノワール / シャルドネ",
     price: 40000,
+    marketPrice: 44000,
+    lowPrice: 36800,
+    offers: 31,
+    criticScore: 95,
+    vintage: "2015",
+    size: "750ml",
+    style: "Sparkling - Vintage Champagne",
     rating: 4.9,
     badge: "Vintage",
     color: "#2f3b28",
@@ -90,6 +132,13 @@ const products = [
     region: "フランス / ソーテルヌ",
     grape: "セミヨン / ソーヴィニヨン・ブラン",
     price: 72000,
+    marketPrice: 79000,
+    lowPrice: 69000,
+    offers: 11,
+    criticScore: 98,
+    vintage: "2016",
+    size: "750ml",
+    style: "Dessert - Lush and Balanced",
     rating: 4.9,
     badge: "甘口",
     color: "#c49a37",
@@ -104,6 +153,13 @@ const products = [
     region: "フランス / イタリア",
     grape: "赤ワイン / シャンパン",
     price: 88000,
+    marketPrice: 92000,
+    lowPrice: 85800,
+    offers: 6,
+    criticScore: 96,
+    vintage: "Mixed",
+    size: "750ml x 2",
+    style: "Gift set - Red and Champagne",
     rating: 4.8,
     badge: "贈答",
     color: "#7a1f33",
@@ -211,7 +267,8 @@ function getFilteredProducts() {
   return filtered.sort((a, b) => {
     if (state.sort === "priceAsc") return a.price - b.price;
     if (state.sort === "priceDesc") return b.price - a.price;
-    if (state.sort === "rating") return b.rating - a.rating;
+    if (state.sort === "rating") return b.criticScore - a.criticScore;
+    if (state.sort === "value") return b.marketPrice - b.price - (a.marketPrice - a.price);
     return b.rating * 100 - b.price / 100 - (a.rating * 100 - a.price / 100);
   });
 }
@@ -242,11 +299,31 @@ function renderProducts() {
             <div class="product-meta">
               <span>${product.category}</span>
               <span>${product.region}</span>
-              <span>★ ${product.rating}</span>
+              <span>${product.vintage}</span>
+              <span>${product.size}</span>
             </div>
             <h3>${product.name}</h3>
             <p>${product.description}</p>
-            <a class="product-source" href="${product.sourceUrl}" target="_blank" rel="noreferrer">公式情報</a>
+            <div class="market-panel" aria-label="${product.name}の相場情報">
+              <div>
+                <span>Critic score</span>
+                <strong>${product.criticScore}</strong>
+              </div>
+              <div>
+                <span>Avg.</span>
+                <strong>${formatter.format(product.marketPrice)}</strong>
+              </div>
+              <div>
+                <span>From</span>
+                <strong>${formatter.format(product.lowPrice)}</strong>
+              </div>
+              <div>
+                <span>Offers</span>
+                <strong>${product.offers}</strong>
+              </div>
+            </div>
+            <p class="style-note">${product.style}</p>
+            <a class="product-source" href="${product.sourceUrl}" target="_blank" rel="noreferrer">銘柄情報</a>
             <div class="price-row">
               <strong>${formatter.format(product.price)}</strong>
               <button class="add-button" type="button" data-add="${product.id}">追加</button>
