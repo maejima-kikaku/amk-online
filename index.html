@@ -70,7 +70,7 @@
           </div>
           <label class="search-field">
             <span>キーワード</span>
-            <input id="searchInput" type="search" placeholder="産地・品種・用途">
+            <input id="searchInput" type="search" placeholder="銘柄・産地・品種・ヴィンテージ">
           </label>
           <div class="filter-block">
             <span>カテゴリ</span>
@@ -83,8 +83,13 @@
               <option value="priceAsc">価格が低い順</option>
               <option value="priceDesc">価格が高い順</option>
               <option value="rating">評価が高い順</option>
+              <option value="value">相場差が大きい順</option>
             </select>
           </label>
+          <div class="market-note">
+            <strong>Market view</strong>
+            <span>平均相場、最安目安、掲載オファー数を参考指標として表示します。</span>
+          </div>
           <div class="delivery-note">
             <strong>クール便対応</strong>
             <span>夏季や泡ものは温度管理配送を選択できます。</span>
@@ -95,7 +100,7 @@
           <div class="section-heading">
             <div>
               <p class="eyebrow">Bottle list</p>
-              <h2>2万円以上の取扱商品</h2>
+              <h2>2万円以上のファインワイン</h2>
             </div>
             <p id="resultCount">0件</p>
           </div>
@@ -197,6 +202,6 @@
     </aside>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script src="script.js?v=wine-focused"></script>
+    <script src="script.js?v=market-ref"></script>
   </body>
 </html>
