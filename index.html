@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AMKオンライン | ワインと酒のオンライン販売</title>
+    <meta
+      name="description"
+      content="ワインを中心に、日本酒・ウイスキー・ギフトを扱うオンライン酒販サイトのプロトタイプ。"
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-labelledby="ageTitle">
+      <div class="age-panel">
+        <p class="eyebrow">Age verification</p>
+        <h1 id="ageTitle">20歳以上ですか？</h1>
+        <p>酒類の販売サイトです。20歳未満の方への酒類販売はできません。</p>
+        <div class="age-actions">
+          <button class="primary-button" id="confirmAge" type="button">20歳以上です</button>
+          <button class="ghost-button" id="denyAge" type="button">退場する</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="AMKオンライン トップへ">
+        <span class="brand-mark">AMK</span>
+        <span>
+          <strong>AMKオンライン</strong>
+          <small>Wine & Spirits</small>
+        </span>
+      </a>
+      <nav class="header-nav" aria-label="主要ナビゲーション">
+        <a href="#products">商品</a>
+        <a href="#gift">ギフト</a>
+        <a href="#guide">配送</a>
+      </nav>
+      <button class="cart-button" id="cartToggle" type="button" aria-controls="cartPanel">
+        <span class="cart-icon" aria-hidden="true"></span>
+        <span>カート</span>
+        <strong id="cartCount">0</strong>
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-label="おすすめ商品">
+        <img
+          src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=80"
+          alt="ワインボトルが並ぶ落ち着いた酒販店内"
+        >
+        <div class="hero-overlay">
+          <p class="eyebrow">Curated online cellar</p>
+          <h1>ワインを主役に、食卓へ届く一杯を選ぶ。</h1>
+          <p>
+            赤・白・泡から、日本酒やウイスキーまで。日常の一本、贈り物、週末の食事に合わせて選べるオンライン酒販店。
+          </p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#products">商品を見る</a>
+            <a class="secondary-button" href="#gift">ギフト相談</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="shop-shell" id="products">
+        <aside class="filters" aria-label="商品絞り込み">
+          <div>
+            <p class="eyebrow">Find your bottle</p>
+            <h2>商品を探す</h2>
+          </div>
+          <label class="search-field">
+            <span>キーワード</span>
+            <input id="searchInput" type="search" placeholder="産地・品種・用途">
+          </label>
+          <div class="filter-block">
+            <span>カテゴリ</span>
+            <div class="segmented" id="categoryFilters" role="list"></div>
+          </div>
+          <label class="select-field">
+            <span>並び替え</span>
+            <select id="sortSelect">
+              <option value="recommended">おすすめ順</option>
+              <option value="priceAsc">価格が低い順</option>
+              <option value="priceDesc">価格が高い順</option>
+              <option value="rating">評価が高い順</option>
+            </select>
+          </label>
+          <div class="delivery-note">
+            <strong>クール便対応</strong>
+            <span>夏季や泡ものは温度管理配送を選択できます。</span>
+          </div>
+        </aside>
+
+        <section class="product-area" aria-live="polite">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Bottle list</p>
+              <h2>2万円以上の取扱商品</h2>
+            </div>
+            <p id="resultCount">0件</p>
+          </div>
+          <div class="product-grid" id="productGrid"></div>
+        </section>
+      </section>
+
+      <section class="service-band" id="gift">
+        <div>
+          <p class="eyebrow">Gift service</p>
+          <h2>熨斗・メッセージカード・飲み頃相談に対応</h2>
+        </div>
+        <p>
+          贈る相手の好み、料理、予算に合わせてセラー担当が候補を提案。ギフト包装と温度管理配送も同時に指定できます。
+        </p>
+      </section>
+
+      <section class="guide-grid" id="guide" aria-label="購入ガイド">
+        <article>
+          <span>01</span>
+          <h3>最短翌営業日出荷</h3>
+          <p>在庫品は営業日午前の注文で順次出荷。配送日指定にも対応します。</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>温度管理オプション</h3>
+          <p>ワインや日本酒の品質を守るクール便をカートで選択できます。</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>20歳未満購入不可</h3>
+          <p>ご注文時に年齢確認を行い、未成年者への酒類販売を防止します。</p>
+        </article>
+      </section>
+    </main>
+
+    <aside class="cart-panel" id="cartPanel" aria-label="ショッピングカート" aria-hidden="true">
+      <div class="cart-header">
+        <h2>カート</h2>
+        <button class="icon-button" id="cartClose" type="button" aria-label="カートを閉じる">×</button>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+      <label class="cool-option">
+        <input id="coolDelivery" type="checkbox">
+        <span>クール便を追加する</span>
+        <strong>+¥880</strong>
+      </label>
+      <section class="payment-box" aria-labelledby="paymentTitle">
+        <div class="payment-heading">
+          <h3 id="paymentTitle">決済方法</h3>
+          <span id="paymentTag">即時決済</span>
+        </div>
+        <div class="payment-methods" id="paymentMethods" role="radiogroup" aria-label="決済方法">
+          <label class="payment-method is-selected">
+            <input type="radio" name="paymentMethod" value="card" checked>
+            <span class="payment-symbol">CARD</span>
+            <span>
+              <strong>クレジットカード</strong>
+              <small>Visa / Mastercard / JCB / Amex</small>
+            </span>
+          </label>
+          <label class="payment-method">
+            <input type="radio" name="paymentMethod" value="paypay">
+            <span class="payment-symbol">Pay</span>
+            <span>
+              <strong>PayPay</strong>
+              <small>スマホ・QRコード決済</small>
+            </span>
+          </label>
+          <label class="payment-method">
+            <input type="radio" name="paymentMethod" value="konbini">
+            <span class="payment-symbol">CVS</span>
+            <span>
+              <strong>コンビニ前払い</strong>
+              <small>入金確認後に出荷</small>
+            </span>
+          </label>
+        </div>
+        <p class="payment-note" id="paymentNote">
+          カード決済は注文完了時に与信を行い、出荷準備時に売上確定する想定です。
+        </p>
+      </section>
+      <div class="cart-summary" aria-label="注文合計">
+        <div>
+          <span>商品小計</span>
+          <strong id="productSubtotal">¥0</strong>
+        </div>
+        <div>
+          <span>配送オプション</span>
+          <strong id="deliveryFee">¥0</strong>
+        </div>
+        <div class="total-row">
+          <span>お支払い合計</span>
+          <strong id="cartSubtotal">¥0</strong>
+        </div>
+      </div>
+      <button class="primary-button checkout-button" id="checkoutButton" type="button">購入手続きへ</button>
+      <p class="legal-note">通信販売酒類小売業免許などの事業者情報は公開前に差し替えてください。</p>
+    </aside>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
